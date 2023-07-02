@@ -1,10 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import './Editpatient.css';
 
 export default function EditPatient({ showModal, closeModal, patient }) {
-  const handleSubmit = (e) => {
+  const [updatedPatient, setUpdatedPatient] = useState({
+    patientId: patient.patientId,
+    patientName: patient.patientName,
+    patientAge: patient.patientAge,
+    patientGender: patient.patientGender,
+    patientDescription: patient.patientDescription,
+    patientEmail: patient.patientEmail,
+    patientPass: patient.patientPass,
+  });
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setUpdatedPatient((prevPatient) => ({
+      ...prevPatient,
+      [id]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    closeModal();
+    try {
+      await axios.put(`https://localhost:7033/api/Patient/${patient.patientId}`, updatedPatient, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log('Patient updated successfully');
+      closeModal();
+    } catch (error) {
+      console.error('Error updating patient:', error);
+    }
   };
 
   return (
@@ -24,6 +53,7 @@ export default function EditPatient({ showModal, closeModal, patient }) {
                 type="text"
                 id="patientName"
                 defaultValue={patient.patientName}
+                onChange={handleChange}
               />
             </div>
             <div className="edit-patient-input-container">
@@ -32,6 +62,7 @@ export default function EditPatient({ showModal, closeModal, patient }) {
                 type="text"
                 id="patientAge"
                 defaultValue={patient.patientAge}
+                onChange={handleChange}
               />
             </div>
             <div className="edit-patient-input-container">
@@ -40,6 +71,7 @@ export default function EditPatient({ showModal, closeModal, patient }) {
                 type="text"
                 id="patientGender"
                 defaultValue={patient.patientGender}
+                onChange={handleChange}
               />
             </div>
             <div className="edit-patient-input-container">
@@ -48,6 +80,7 @@ export default function EditPatient({ showModal, closeModal, patient }) {
                 type="text"
                 id="patientDescription"
                 defaultValue={patient.patientDescription}
+                onChange={handleChange}
               />
             </div>
             <div className="edit-patient-input-container">
@@ -56,6 +89,7 @@ export default function EditPatient({ showModal, closeModal, patient }) {
                 type="text"
                 id="patientEmail"
                 defaultValue={patient.patientEmail}
+                onChange={handleChange}
               />
             </div>
             <div className="edit-patient-input-container">
@@ -64,6 +98,7 @@ export default function EditPatient({ showModal, closeModal, patient }) {
                 type="password"
                 id="patientPass"
                 defaultValue={patient.patientPass}
+                onChange={handleChange}
               />
             </div>
             <div className="edit-patient-button-container">

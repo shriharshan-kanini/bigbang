@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './Createpatient.css';
 
 export default function CreatePatient() {
   const [patient, setPatient] = useState({
-    name: '',
-    age: '',
-    email: '',
-    password: '',
-    active: false,
-    image: null,
-    description: '',
-    gender: '',
+    patientName: '',
+    patientAge: '',
+    patientGender: '',
+    patientDescription: '',
+    patientEmail: '',
+    patientPass: '',
+    patientImg: null,
   });
 
   const handleChange = (e) => {
@@ -25,16 +25,26 @@ export default function CreatePatient() {
     const imageFile = e.target.files[0];
     setPatient((prevPatient) => ({
       ...prevPatient,
-      image: imageFile,
+      patientImg: imageFile,
     }));
-  };
+  };  
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(patient);
-    // Handle form submission logic here
+  
+    try {
+      await axios.post('https://localhost:7033/api/Patient', patient, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log('Patient created successfully');
+    } catch (error) {
+      console.error('Error creating patient:', error);
+    }
   };
-
+  
   return (
     <div className="con">
       <form className="form" onSubmit={handleSubmit}>
@@ -43,8 +53,8 @@ export default function CreatePatient() {
           <input
             type="text"
             placeholder="Patient Name"
-            name="name"
-            value={patient.name}
+            name="patientName"
+            value={patient.patientName}
             onChange={handleChange}
           />
           <span></span>
@@ -53,8 +63,8 @@ export default function CreatePatient() {
           <input
             type="number"
             placeholder="Age"
-            name="age"
-            value={patient.age}
+            name="patientAge"
+            value={patient.patientAge}
             onChange={handleChange}
           />
         </div>
@@ -62,8 +72,8 @@ export default function CreatePatient() {
           <input
             type="email"
             placeholder="Email"
-            name="email"
-            value={patient.email}
+            name="patientEmail"
+            value={patient.patientEmail}
             onChange={handleChange}
           />
         </div>
@@ -71,8 +81,8 @@ export default function CreatePatient() {
           <input
             type="password"
             placeholder="Password"
-            name="password"
-            value={patient.password}
+            name="patientPass"
+            value={patient.patientPass}
             onChange={handleChange}
           />
         </div>
@@ -90,8 +100,8 @@ export default function CreatePatient() {
           <input
             type="text"
             placeholder="Description"
-            name="description"
-            value={patient.description}
+            name="patientDescription"
+            value={patient.patientDescription}
             onChange={handleChange}
           />
         </div>
@@ -99,8 +109,8 @@ export default function CreatePatient() {
           <label htmlFor="gender">Gender:</label>
           <select
             id="gender"
-            name="gender"
-            value={patient.gender}
+            name="patientGender"
+            value={patient.patientGender}
             onChange={handleChange}
           >
             <option value="">Select Gender</option>
