@@ -6,9 +6,11 @@ import Doctorcard from './Doctorcard';
 import Doctortable from './Doctortable';
 import ActiveDoctor from './ActiveDoctor';
 import DeactiveDoctor from './DeactiveDoctor';
+import Patienttable from './patienttable';
 
 export default function Dashboard() {
   const [isOpen, setIsOpen] = useState(false);
+  
 
   return (
     <div>
@@ -17,6 +19,7 @@ export default function Dashboard() {
         <DeactiveDoctor/>
         {/* <Doctorcard/> */}
         <Doctortable/>
+        <Patienttable/>
       <div className={`dashboard-navbar ${isOpen ? 'open' : ''}`}>
         <ul className="dashboard-navbar-nav">
           <li className="dashboard-nav-item">

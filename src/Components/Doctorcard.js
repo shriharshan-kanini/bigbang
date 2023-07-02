@@ -6,7 +6,7 @@ import Navbar from './Navbar';
 export default function Doctorcard() {
   return (
     <div>
-    <Navbar/>
+    {/* <Navbar/> */}
     <div className="cont">
       <div className="doctor-card">
         <div className="first-content">
@@ -20,9 +20,13 @@ export default function Doctorcard() {
           <div className="doc-name">
             <span>Doctor Name</span>
           </div>
+
         </div>
         <div className="second-content">
           <span className="desc">doctor description</span>
+          <button className='Edit'>
+          Edit
+          </button>
         </div>
       </div>
       <br />
