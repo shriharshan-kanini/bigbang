@@ -54,16 +54,7 @@
     border-radius: 0.5rem;
     text-transform: uppercase;
   }
-  
-  /* .con {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-   */
-
    .modal {
-    /* ... (unchanged) */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -76,7 +67,6 @@
   }
   
   .modal-content {
-    /* ... (unchanged) */
     max-width: 500px;
     background-color: #fff;
     padding: 20px;
@@ -84,7 +74,6 @@
   }
   
   .modal-header {
-    /* ... (unchanged) */
     display: flex;
     justify-content: space-between;
     align-items: center;

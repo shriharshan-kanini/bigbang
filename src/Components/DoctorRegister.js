@@ -1,25 +1,83 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import './DoctorRegister.css';
-import Navbar from './Navbar';
+import { useNavigate } from 'react-router-dom';
 
-export default function DoctorRegister() {
+const DoctorRegister = () => {
+  const [formData, setFormData] = useState({
+    docName: '',
+    docSpecialty: '',
+    docEmail: '',
+    docPas: '',
+    docActive: true,
+    docImg: null
+  });
+
+  const handleChange = (e) => {
+    if (e.target.name === 'docImg') {
+      setFormData({ ...formData, [e.target.name]: e.target.files[0] });
+    } else {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
+  };
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const formDataToSend = new FormData();
+      formDataToSend.append('docName', formData.docName);
+      formDataToSend.append('docSpecialty', formData.docSpecialty);
+      formDataToSend.append('docEmail', formData.docEmail);
+      formDataToSend.append('docPas', formData.docPas);
+      formDataToSend.append('docActive', formData.docActive);
+      formDataToSend.append('docImg', formData.docImg);
+
+      const response = await axios.post('https://localhost:7033/api/Doctor', formDataToSend);
+
+      console.log('Response:', response.data);
+      navigate('/login');
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
   return (
-    <div>
-      <img src="https://techcrunch.com/wp-content/uploads/2020/09/GettyImages-1211152561.jpg?w=713" alt="Background" className='image' style={{ marginTop: '7%', marginLeft: '10%', width: '50%' }} />
-      <div className="container">
-        <div className="registration-form">
-          <header>Signup</header>
-          <form action="#">
-            <input type="text" placeholder="Enter your email" />
-            <input type="password" placeholder="Create a password" />
-            <input type="password" placeholder="Confirm your password" />
-            <input type="button" className="button" value="Signup" />
-          </form>
-          <div className="signup">
-            <span className="signup-text">Already have an account? <label htmlFor="check">Login</label></span>
-          </div>
-        </div>
-      </div>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <label>
+        Name:
+        <input type="text" name="docName" value={formData.docName} onChange={handleChange} />
+      </label>
+      <br />
+      <label>
+        Specialty:
+        <input type="text" name="docSpecialty" value={formData.docSpecialty} onChange={handleChange} />
+      </label>
+      <br />
+      <label>
+        Email:
+        <input type="email" name="docEmail" value={formData.docEmail} onChange={handleChange} />
+      </label>
+      <br />
+      <label>
+        Password:
+        <input type="password" name="docPas" value={formData.docPas} onChange={handleChange} />
+      </label>
+      <br />
+      <label>
+        Active:
+        <input type="checkbox" name="docActive" checked={formData.docActive} onChange={handleChange} />
+      </label>
+      <br />
+      <label>
+        Image:
+        <input type="file" name="docImg" onChange={handleChange} />
+      </label>
+      <br />
+      <button type="submit">Submit</button>
+    </form>
   );
-}
+};
+
+export default DoctorRegister;

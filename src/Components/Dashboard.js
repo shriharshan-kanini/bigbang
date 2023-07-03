@@ -1,20 +1,30 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
-import Navbar from './Navbar';
+// eslint-disable-next-line
+// import Navbar from './Navbar';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import Doctorcard from './Doctorcard';
 import Doctortable from './Doctortable';
 import ActiveDoctor from './ActiveDoctor';
 import DeactiveDoctor from './DeactiveDoctor';
 import Patienttable from './patienttable';
 
 export default function Dashboard() {
+   // eslint-disable-next-line
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
   
+  const handleDoctorClick = () => {
+    navigate('/Doctor');
+  };
+
+  const handlePatientClick = () => {
+    navigate('/Doctor');
+  };
 
   return (
     <div>
-        <Navbar />
+        {/* <Navbar /> */}
         <ActiveDoctor/>
         <DeactiveDoctor/>
         {/* <Doctorcard/> */}
@@ -43,14 +53,14 @@ export default function Dashboard() {
             </a>
           </li><br></br>
           <li className="dashboard-nav-item">
-            <a href="#contact" className="dashboard-nav-link">
+            <button href="#contact" className="dashboard-nav-link" onClick={handlePatientClick}>
             <i className="fas fa-user"></i> Patients
-            </a>
+            </button>
           </li><br></br>
           <li className="dashboard-nav-item">
-            <a href="#contact" className="dashboard-nav-link">
-            <i className="fas fa-medkit"></i> Medications
-            </a>
+            <button href="#contact" className="dashboard-nav-link" onClick={handleDoctorClick}>
+            <i className="fas fa-medkit"></i> Doctor
+            </button>
           </li><br></br>
           <li className="dashboard-nav-item">
             <a href="#contact" className="dashboard-nav-link">

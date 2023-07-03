@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './ActiveDoctor.css';
 
 export default function ActiveDoctor() {
+  const [activeDoctors, setActiveDoctors] = useState([]);
+
+  useEffect(() => {
+    fetchActiveDoctors();
+  }, []);
+
+  const fetchActiveDoctors = async () => {
+    try {
+      const response = await axios.get('https://localhost:7033/api/Doctor');
+      const doctors = response.data;
+      const approvedDoctors = doctors.filter((doctor) => doctor.status === 'Approved');
+      setActiveDoctors(approvedDoctors);
+    } catch (error) {
+      console.error('Error fetching active doctors:', error);
+    }
+  };
+
   return (
     <div className="card active-doctor-card">
       <div className="card-body">
@@ -10,26 +28,22 @@ export default function ActiveDoctor() {
           <thead>
             <tr>
               <th>Doctor Name</th>
-              <th>Availability</th>
+              <th>Specialty</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Dr. John Doe</td>
-              <td>Monday-Friday</td>
-            </tr>
-            <tr>
-              <td>Dr. Jane Smith</td>
-              <td>Monday, Wednesday, Friday</td>
-            </tr>
-            <tr>
-              <td>Dr. Jane Smith</td>
-              <td>Monday, Wednesday, Friday</td>
-            </tr>
-            <tr>
-              <td>Dr. Jane Smith</td>
-              <td>Monday, Wednesday, Friday</td>
-            </tr>
+            {activeDoctors.length === 0 ? (
+              <tr>
+                <td colSpan="2">No active doctors available</td>
+              </tr>
+            ) : (
+              activeDoctors.map((doctor) => (
+                <tr key={doctor.docId}>
+                  <td>{doctor.docName}</td>
+                  <td>{doctor.docSpecialty}</td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

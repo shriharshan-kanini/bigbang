@@ -29,7 +29,6 @@ export default function Doctortable() {
   const handleDeleteClick = async (doctorId) => {
     try {
       await axios.delete(`https://localhost:7033/api/Doctor/${doctorId}`);
-      // Remove the deleted doctor from the state
       setDoctorsData((prevData) =>
         prevData.filter((doctor) => doctor.docId !== doctorId)
       );
@@ -63,7 +62,7 @@ export default function Doctortable() {
               <td>{doctor.docSpecialty}</td>
               <td>{doctor.docEmail}</td>
               <td>{doctor.docPas}</td>
-              <td>{doctor.docActive ? 'Active' : 'Inactive'}</td>
+              <td>{doctor.status}</td>
               <td>
                 <button onClick={() => handleEditClick(doctor)}>
                   <span className="box">Edit</span>

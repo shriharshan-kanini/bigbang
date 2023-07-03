@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
-
+  const navigate = useNavigate();
   
   const handleCreateDoctor = () => {
+    navigate('/create-doctor');
     console.log('Creating a doctor');
   };
 
   const handleCreatePatient = () => {
+    navigate('/create-patient');
     console.log('Creating a patient');
   };
 

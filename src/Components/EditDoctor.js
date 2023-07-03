@@ -20,6 +20,7 @@ export default function EditDoctor({ showModal, closeModal, doctor }) {
     }));
   };
 
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
