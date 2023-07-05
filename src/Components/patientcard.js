@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './patientcard.css';
-import Patientbutton from './Patientbutton';
 import Doctortable from './Doctortable';
 import Doctorbutton from './Doctorbutton';
 export function Patientcard() {
@@ -35,7 +34,6 @@ export function Patientcard() {
 
   return (
     <div>
-    {/* <Patientbutton/> */}
     <Doctorbutton/>
     <div className="cont">
       

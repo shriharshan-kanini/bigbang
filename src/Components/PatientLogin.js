@@ -19,7 +19,7 @@ const PatientLogin = () => {
     setRandomNumber(generatedNumber);
 
     const templateParams = {
-      to_name: 'Harshad',
+      to_name: 'shriharshan',
       from_name: 'Shriharshan',
       message: 'The OTP is ' + generatedNumber,
       to_email: patientEmail
@@ -62,6 +62,7 @@ const PatientLogin = () => {
       .then((response) => {
         sendEmail(patientEmail)
         console.log('New item added:', response.data);
+        localStorage.setItem('token', response.data);
         console.log(generatedNumber)
       })
       .catch((error) => {
