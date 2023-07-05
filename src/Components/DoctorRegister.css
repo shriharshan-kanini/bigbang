@@ -1,36 +1,105 @@
-form {
-  width: 300px;
+.doctor-register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.doctor-register-image {
+  width: 50%;
+  margin-top: 1%;
+  margin-left: 10%;
+}
+
+.doctor-register-card {
+  width: 500px;
   margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 15%;
 }
 
-label {
-  display: block;
-  margin-bottom: 10px;
+.doctor-register-title {
+  font-size: 28px;
+  color: royalblue;
+  font-weight: 600;
+  letter-spacing: -1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="file"] {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.doctor-register-title::before,
+.doctor-register-title::after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 0px;
+  background-color: royalblue;
 }
 
-input[type="checkbox"] {
-  margin-top: 5px;
+.doctor-register-title::before {
+  width: 18px;
+  height: 18px;
+  background-color: royalblue;
 }
 
-button[type="submit"] {
-  padding: 10px 15px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 4px;
+.doctor-register-title::after {
+  width: 18px;
+  height: 18px;
+  animation: pulse 1s linear infinite;
+}
+
+.doctor-register-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.doctor-register-form input {
+  height: 60px;
+  width: 90%;
+  padding: 0 15px;
+  font-size: 17px;
+  margin-bottom: 1.3rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+}
+
+.doctor-register-form input:focus {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.doctor-register-form input.doctor-register-button {
+  color: #fff;
+  background: #009579;
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-top: 1.7rem;
   cursor: pointer;
+  transition: 0.4s;
+  width: 70%;
+  margin-left: 12%;
 }
 
-button[type="submit"]:hover {
-  background-color: #45a049;
+.doctor-register-form input.doctor-register-button:hover {
+  background: #006653;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
 }

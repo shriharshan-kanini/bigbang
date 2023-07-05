@@ -31,10 +31,18 @@ export default function CreatePatient() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(patient);
   
     try {
-      await axios.post('https://localhost:7033/api/Patient', patient, {
+      const formData = new FormData();
+      formData.append('patientName', patient.patientName);
+      formData.append('patientAge', patient.patientAge);
+      formData.append('patientGender', patient.patientGender);
+      formData.append('patientDescription', patient.patientDescription);
+      formData.append('patientEmail', patient.patientEmail);
+      formData.append('patientPass', patient.patientPass);
+      formData.append('imageFile', patient.patientImg);
+
+      await axios.post('https://localhost:7033/api/Patient', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -95,29 +103,6 @@ export default function CreatePatient() {
             accept="image/*"
             onChange={handleImageChange}
           />
-        </div>
-        <div className="input-container">
-          <input
-            type="text"
-            placeholder="Description"
-            name="patientDescription"
-            value={patient.patientDescription}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="input-container">
-          <label htmlFor="gender">Gender:</label>
-          <select
-            id="gender"
-            name="patientGender"
-            value={patient.patientGender}
-            onChange={handleChange}
-          >
-            <option value="">Select Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select>
         </div>
         <button type="submit" className="submit">
           Create Patient

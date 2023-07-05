@@ -1,58 +1,57 @@
 .patient-table {
-    width: 50%;
-    border-collapse: collapse;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    margin-left: 33%;
-    margin-top: 5%;
-  }
-  
-  .patient-table th,
-  .patient-table td {
-    padding: 8px;
-    border: 1px solid #ddd;
-  }
-  
-  .patient-table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-  }
-  
-  .patient-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  .patient-table tbody tr:hover {
-    background-color: #e9e9e9;
-  }
-  
-  .patient-table td:nth-child(1),
-  .patient-table th:nth-child(1) {
-    width: 30%;
-  }
-  
-  .patient-table td:nth-child(2),
-  .patient-table th:nth-child(2) {
-    width: 10%;
-  }
-  
-  .patient-table td:nth-child(3),
-  .patient-table th:nth-child(3) {
-    width: 10%;
-  }
-  
-  .patient-table td:nth-child(4),
-  .patient-table th:nth-child(4) {
-    width: 30%;
-  }
-  
-  .patient-table td:nth-child(5),
-  .patient-table th:nth-child(5) {
-    width: 15%;
-  }
-  
-  .patient-table td:nth-child(6),
-  .patient-table th:nth-child(6) {
-    width: 5%;
-  }
-  
+  width: 50%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  margin-left: 33%;
+  margin-top: 5%;
+}
+
+.patient-table th,
+.patient-table td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.patient-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.patient-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.patient-table tbody tr:hover {
+  background-color: #e9e9e9;
+}
+
+.patient-table td:nth-child(1),
+.patient-table th:nth-child(1) {
+  width: 30%;
+}
+
+.patient-table td:nth-child(2),
+.patient-table th:nth-child(2) {
+  width: 10%;
+}
+
+.patient-table td:nth-child(3),
+.patient-table th:nth-child(3) {
+  width: 10%;
+}
+
+.patient-table td:nth-child(4),
+.patient-table th:nth-child(4) {
+  width: 30%;
+}
+
+.patient-table td:nth-child(5),
+.patient-table th:nth-child(5) {
+  width: 15%;
+}
+
+.patient-table td:nth-child(6),
+.patient-table th:nth-child(6) {
+  width: 5%;
+}

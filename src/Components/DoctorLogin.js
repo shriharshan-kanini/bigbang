@@ -13,13 +13,7 @@ const DoctorLogin = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    // Create a payload object with the user input
-    const payload
-    
-    
-    
-    
-    = {
+    const payload = {
       docEmail,
       docPas
     };
@@ -34,19 +28,22 @@ const DoctorLogin = () => {
       });
 
       console.log('New item added:', response.data);
-      // Perform any necessary actions after successful POST request
-      navigate('/patient'); // Redirect to "/patient" route
+      
+      navigate('/patient'); 
     } catch (error) {
       console.error('Error adding new item:', error);
-      // Perform any necessary actions for error handling
     }
+  };
+
+  const handleregisterClick = () => {
+    navigate('/register');
   };
 
   return (
     <div>
       <img src="https://techcrunch.com/wp-content/uploads/2020/09/GettyImages-1211152561.jpg?w=713" alt="Background" className='image' style={{ marginTop: '7%', marginLeft: '10%', width: '50%' }} />
       <div className="container">
-        <div className="form login">
+        <div className="form login-form">
           <header>Doctor Login</header>
           <form>
             <input
@@ -72,11 +69,8 @@ const DoctorLogin = () => {
             />
           </form>
           <div className="signup">
-            <span className="signup">Don't have an account? <label htmlFor="check">Signup</label></span>
+            <span className="signup-text">Don't have an account? <label htmlFor="check" onClick={handleregisterClick}>Signup</label></span>
           </div>
-        </div>
-        <div className="form registration">
-          {/* Add your registration form here */}
         </div>
       </div>
     </div>

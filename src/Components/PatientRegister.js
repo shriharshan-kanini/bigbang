@@ -53,54 +53,32 @@ const PatientRegister = () => {
       });
 
       console.log('Response:', response.data);
-      // Handle success or show a success message to the user
       navigate('/patient-login');
     } catch (error) {
       console.error('Error:', error);
-      // Handle error or show an error message to the user
     }
   };
 
   return (
-    <div className="card">
-      <form onSubmit={handleSubmit}>
-        <label>
-          Patient Name:
-          <input type="text" name="PatientName" value={formData.PatientName} onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          Patient Age:
-          <input type="number" name="PatientAge" value={formData.PatientAge} onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          Patient Gender:
-          <input type="text" name="PatientGender" value={formData.PatientGender} onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          Patient Description:
-          <textarea name="PatientDescription" value={formData.PatientDescription} onChange={handleChange}></textarea>
-        </label>
-        <br />
-        <label>
-          Patient Email:
-          <input type="email" name="PatientEmail" value={formData.PatientEmail} onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          Patient Password:
-          <input type="password" name="PatientPass" value={formData.PatientPass} onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          Patient Image:
-          <input type="file" name="PatientImg" onChange={handleFileChange} />
-        </label>
-        <br />
-        <button type="submit">Submit</button>
-      </form>
+    <div className="patient-register-container">
+      <div className="patient-register-image-container">
+        <img src="https://i.pinimg.com/564x/35/35/1e/35351edc2a8dc23392089b89a43cad03.jpg" alt="Background" className="patient-register-image" />
+      </div>
+      <div className="patient-register-form-container">
+        <div className="patient-register-form">
+          <header>Patient Registration</header>
+          <form onSubmit={handleSubmit}>
+            <input type="text" name="PatientName" value={formData.PatientName} onChange={handleChange} placeholder="Patient Name" required />
+            <input type="number" name="PatientAge" value={formData.PatientAge} onChange={handleChange} placeholder="Patient Age" required />
+            <input type="text" name="PatientGender" value={formData.PatientGender} onChange={handleChange} placeholder="Patient Gender" required />
+            <textarea name="PatientDescription" value={formData.PatientDescription} onChange={handleChange} placeholder="Patient Description" required></textarea>
+            <input type="email" name="PatientEmail" value={formData.PatientEmail} onChange={handleChange} placeholder="Patient Email" required />
+            <input type="password" name="PatientPass" value={formData.PatientPass} onChange={handleChange} placeholder="Patient Password" required />
+            <input type="file" name="PatientImg" accept="image/*" onChange={handleFileChange} placeholder="Patient Image" required />
+            <button type="submit">Register</button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };

@@ -21,7 +21,7 @@
   display: block;
 }
 
-#check:checked ~ .login {
+#check:checked ~ .login-form {
   display: none;
 }
 
@@ -92,6 +92,11 @@
   text-decoration: underline;
 }
 
-.image{
+.image {
   top: 50%;
+}
+
+.signup-text {
+  color: #009579;
+  cursor: pointer;
 }

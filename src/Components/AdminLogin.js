@@ -2,21 +2,22 @@ import React from 'react';
 import './AdminLogin.css';
 import axios from 'axios';
 import { useState } from 'react';
-import { useRoutes } from 'react-router-dom';
+import { useRoutes, useNavigate } from 'react-router-dom';
 
 const AdminLogin = () => {
-  const api_url = "https://localhost:7033/api/Admins";
+  const api_url = "https://localhost:7033/api/Login/Admin";
 
-  const [adminName, setEmailOrPhone] = useState('');
-  const [adminPassword, setPassword] = useState('');
+  const [adminName, setAdminName] = useState('');
+  const [adminPassword, setAdminPassword] = useState('');
+  const [adminEmail, setAdminEmail] = useState('');
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    // Create a payload object with the user input
     const payload = {
-        adminName,
-        adminPassword
+      adminName,
+      adminPassword,
+      adminEmail
     };
 
     console.log(payload);
@@ -29,12 +30,17 @@ const AdminLogin = () => {
       })
       .then((response) => {
         console.log('New item added:', response.data);
-        // Perform any necessary actions after successful POST request
+        navigate('/dashboard'); // Navigate to "/dashboard" after successful login
       })
       .catch((error) => {
         console.error('Error adding new item:', error);
-        // Perform any necessary actions for error handling
       });
+  };
+
+  const navigate = useNavigate();
+
+  const handleregisterClick = () => {
+    navigate('/admin-register');
   };
 
   const routes = useRoutes([
@@ -50,14 +56,21 @@ const AdminLogin = () => {
                 <input
                   type="text"
                   value={adminName}
-                  onChange={(e) => setEmailOrPhone(e.target.value)}
+                  onChange={(e) => setAdminName(e.target.value)}
                   required
                   placeholder="Enter your Name"
                 />
                 <input
+                  type="text"
+                  value={adminEmail}
+                  onChange={(e) => setAdminEmail(e.target.value)}
+                  required
+                  placeholder="Enter your email"
+                />
+                <input
                   type="password"
                   value={adminPassword}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => setAdminPassword(e.target.value)}
                   required
                   placeholder="Enter your password"
                 />
@@ -70,11 +83,8 @@ const AdminLogin = () => {
                 />
               </form>
               <div className="signup">
-                <span className="signup">Don't have an account? <label htmlFor="check">Signup</label></span>
+                <span className="signup">Don't have an account? <label htmlFor="check" onClick={handleregisterClick}>Signup</label></span>
               </div>
-            </div>
-            <div className="form registration">
-              {/* Add your registration form here */}
             </div>
           </div>
         </div>

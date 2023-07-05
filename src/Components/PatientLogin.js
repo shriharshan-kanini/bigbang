@@ -16,11 +16,11 @@ const PatientLogin = () => {
     
     const generatedNumber = Math.floor(Math.random() * 9000) + 1000;
 
-    setRandomNumber(generatedNumber); // Store the generated number in the state
+    setRandomNumber(generatedNumber);
 
     const templateParams = {
       to_name: 'Harshad',
-      from_name: 'Harshad Hussain',
+      from_name: 'Shriharshan',
       message: 'The OTP is ' + generatedNumber,
       to_email: patientEmail
     };
@@ -69,6 +69,10 @@ const PatientLogin = () => {
       });
   };
 
+  const handleregisterClick = () => {
+    navigate('/patient-register');
+  };
+
   const routes = useRoutes([
     {
       path: '/',
@@ -102,11 +106,8 @@ const PatientLogin = () => {
                 />
               </form>
               <div className="signup">
-                <span className="signup">Don't have an account? <label htmlFor="check">Signup</label></span>
+                <span className="signup">Don't have an account? <label htmlFor="check" onClick={handleregisterClick}>Signup</label></span>
               </div>
-            </div>
-            <div className="form registration">
-              {/* Add your registration form here */}
             </div>
           </div>
         </div>

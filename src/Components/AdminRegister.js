@@ -31,24 +31,47 @@ const AdminRegister = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Admin Name:
-        <input type="text" name="AdminName" value={formData.AdminName} onChange={handleChange} />
-      </label>
-      <br />
-      <label>
-        Admin Email:
-        <input type="email" name="AdminEmail" value={formData.AdminEmail} onChange={handleChange} />
-      </label>
-      <br />
-      <label>
-        Admin Password:
-        <input type="password" name="AdminPassword" value={formData.AdminPassword} onChange={handleChange} />
-      </label>
-      <br />
-      <button type="submit">Submit</button>
-    </form>
+    <div className="admin-register-container">
+      <img
+        src="https://i.pinimg.com/564x/05/65/bf/0565bfd66594324aa6e3b0396c65c4ce.jpg"
+        alt="Background"
+        className="image"
+      />
+      <div className="container">
+        <div className="form registration">
+          <header>Admin Registration</header>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="AdminName"
+              value={formData.AdminName}
+              onChange={handleChange}
+              required
+              placeholder="Enter your Name"
+            />
+            <input
+              type="email"
+              name="AdminEmail"
+              value={formData.AdminEmail}
+              onChange={handleChange}
+              required
+              placeholder="Enter your Email"
+            />
+            <input
+              type="password"
+              name="AdminPassword"
+              value={formData.AdminPassword}
+              onChange={handleChange}
+              required
+              placeholder="Enter your Password"
+            />
+            <button type="submit" className="button">
+              Register
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
   );
 };
 

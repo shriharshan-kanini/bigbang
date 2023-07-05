@@ -3,7 +3,7 @@ import axios from 'axios';
 import './patienttable.css';
 import EditPatient from './Editpatient';
 
-export default function Patienttable() {
+export default function PatientTable() {
   const [showModal, setShowModal] = useState(false);
   const [selectedPatient, setSelectedPatient] = useState(null);
   const [patientsData, setPatientsData] = useState([]);

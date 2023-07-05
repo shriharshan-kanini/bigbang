@@ -4,12 +4,12 @@ import './createdoctor.css';
 
 export default function CreateDoctor() {
   const [doctor, setDoctor] = useState({
-    name: '',
-    specialty: '',
-    email: '',
-    password: '',
-    active: false,
-    image: null,
+    docName: '',
+    docSpecialty: '',
+    docEmail: '',
+    docPas: '',
+    status: false,
+    docImg: null,
   });
 
   const handleChange = (e) => {
@@ -24,45 +24,44 @@ export default function CreateDoctor() {
     const imageFile = e.target.files[0];
     setDoctor((prevDoctor) => ({
       ...prevDoctor,
-      image: imageFile,
+      docImg: imageFile,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const requestData = {
-        docName: doctor.name,
-        docSpecialty: doctor.specialty,
-        docEmail: doctor.email,
-        docPas: doctor.password,
-        docActive: doctor.active
-      };
-  
+      const formData = new FormData();
+      formData.append('docName', doctor.docName);
+      formData.append('docSpecialty', doctor.docSpecialty);
+      formData.append('docEmail', doctor.docEmail);
+      formData.append('docPas', doctor.docPas);
+      formData.append('status', doctor.status);
+      formData.append('imageFile', doctor.docImg);
+
       const response = await axios.post(
         'https://localhost:7033/api/Doctor',
-        requestData,
+        formData,
         {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         }
       );
-  
+
       console.log('Doctor created:', response.data);
       setDoctor({
-        name: '',
-        specialty: '',
-        email: '',
-        password: '',
-        active: false,
-        image: null,
+        docName: '',
+        docSpecialty: '',
+        docEmail: '',
+        docPas: '',
+        status: false,
+        docImg: null,
       });
     } catch (error) {
       console.error('Error creating doctor:', error);
     }
   };
-  
 
   return (
     <div className="con">
@@ -72,8 +71,8 @@ export default function CreateDoctor() {
           <input
             type="text"
             placeholder="Doctor Name"
-            name="name"
-            value={doctor.name}
+            name="docName"
+            value={doctor.docName}
             onChange={handleChange}
           />
           <span></span>
@@ -82,8 +81,8 @@ export default function CreateDoctor() {
           <input
             type="text"
             placeholder="Specialty"
-            name="specialty"
-            value={doctor.specialty}
+            name="docSpecialty"
+            value={doctor.docSpecialty}
             onChange={handleChange}
           />
         </div>
@@ -91,8 +90,8 @@ export default function CreateDoctor() {
           <input
             type="email"
             placeholder="Email"
-            name="email"
-            value={doctor.email}
+            name="docEmail"
+            value={doctor.docEmail}
             onChange={handleChange}
           />
         </div>
@@ -100,29 +99,17 @@ export default function CreateDoctor() {
           <input
             type="password"
             placeholder="Password"
-            name="password"
-            value={doctor.password}
+            name="docPas"
+            value={doctor.docPas}
             onChange={handleChange}
           />
-        </div>
-        <div className="input-container">
-          <label htmlFor="active">Active:</label>
-          <select
-            id="active"
-            name="active"
-            value={doctor.active}
-            onChange={handleChange}
-          >
-            <option value={true}>True</option>
-            <option value={false}>False</option>
-          </select>
         </div>
         <div className="input-container">
           <label htmlFor="image">Image:</label>
           <input
             type="file"
             id="image"
-            name="image"
+            name="imageFile"
             accept="image/*"
             onChange={handleImageChange}
           />

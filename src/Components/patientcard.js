@@ -1,18 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './patientcard.css';
-import Navbar from './Navbar';
+import Patientbutton from './Patientbutton';
+import Doctortable from './Doctortable';
+import Doctorbutton from './Doctorbutton';
 export function Patientcard() {
   const [patients, setPatients] = useState([]);
-
+  
+  
   useEffect(() => {
+    
     fetchPatients();
   }, []);
 
   const fetchPatients = async () => {
+    const token = localStorage.getItem('token')
     try {
-      const response = await axios.get('https://localhost:7033/api/Patient');
+      const response = await axios.get('https://localhost:7033/api/Patient',{
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       setPatients(response.data.value);
+      fetchPatients();
     } catch (error) {
       console.error('Error fetching patients:', error);
     }
@@ -25,7 +35,8 @@ export function Patientcard() {
 
   return (
     <div>
-    <Navbar/>
+    {/* <Patientbutton/> */}
+    <Doctorbutton/>
     <div className="cont">
       
       {patients.map((patient) => (
@@ -54,6 +65,7 @@ export function Patientcard() {
         </div>
       ))}
     </div>
+    <Doctortable/>
     </div>
   );
 }

@@ -6,15 +6,14 @@
   cursor: pointer;
   width: 150px;
   height: 50px;
-  background-image: linear-gradient(to top, #D8D9DB 0%, #fff 80%, #FDFDFD 100%);
+  background-color: green;
   border-radius: 30px;
   border: 1px solid #8F9092;
   transition: all 0.2s ease;
   font-family: "Source Sans Pro", sans-serif;
   font-size: 14px;
   font-weight: 600;
-  color: #606060;
-  text-shadow: 0 1px #fff;
+  color: #fff;
 }
 
 .button:hover {
@@ -41,4 +40,8 @@
 .patient{
   margin-left: 80%;
   margin-top: -3%;
+}
+
+.doctor-navbar{
+  padding: 10px;
 }
